@@ -18,13 +18,11 @@ public class CoinChangeCombination{
         dp[0] = 1;
 
         for(int i = 0; i < n; i++){
-            int coin = arr[i];
-            for(int j = 1; j <= amount; j++){
-                if(coin <= j){
-                    dp[j]+=dp[j-coin];
+            for(int j = arr[i]; j <= amount; j++){
+                    dp[j]+=dp[j-arr[i]];
                 }
             }
-        }
         System.out.println("Number of coin combinations "+dp[amount]);
+        }
+        
     }
-}
