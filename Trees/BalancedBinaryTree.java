@@ -1,5 +1,4 @@
-/* Problem Link : https://leetcode.com/problems/diameter-of-binary-tree/submissions/1252538239/  */
-
+/* Problem Link : https://leetcode.com/problems/balanced-binary-tree/description/ */
 
 /**
  * Definition for a binary tree node.
@@ -17,20 +16,27 @@
  * }
  */
 class Solution {
-    int diameter;
-    public int diameterOfBinaryTree(TreeNode root) {
-        depth(root);
-        return diameter;
+    public boolean isBalanced(TreeNode root) {
 
+        int isBalance = depth(root);
+        if(isBalance == -1) return false;
+        return true;
+        
     }
 
     public int depth(TreeNode root){
 
         if(root == null) return 0;
         int left = depth(root.left);
+        if(left == -1) return -1;
         int right = depth(root.right);
-        diameter = Math.max(diameter, right+left);
+        if(right == -1) return -1;
 
+        int diff = Math.abs(left-right);
+        if(diff > 1) return -1;
         return Math.max(left, right)+1;
+
+
+    
     }
 }
